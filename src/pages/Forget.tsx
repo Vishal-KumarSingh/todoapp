@@ -1,5 +1,5 @@
 
-function About() {
+function Forget() {
   
 
   return (
@@ -157,4 +157,4 @@ function About() {
   )
 }
 
-export default About
+export default Forget

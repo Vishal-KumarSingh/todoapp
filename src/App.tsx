@@ -1,15 +1,14 @@
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Link
+  Route
 } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import {Dashboard} from './pages/Dashboard'
 import './App.css'
 import NavBar from './sections/NavBar'
-
+import { Button } from "@/components/ui/button";
 function App() {
 
   
@@ -26,6 +25,7 @@ function App() {
       
     </nav>
     <div className='page'>
+     
     <Routes>
 
          <Route path="/" element={<Home />} />
