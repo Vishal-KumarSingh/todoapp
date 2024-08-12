@@ -9,7 +9,6 @@ import {Dashboard} from './pages/Dashboard'
 import {Login} from './pages/Login'
 import './App.css'
 import NavBar from './sections/NavBar'
-import { Button } from "@/components/ui/button";
 function App() {
 
   
