@@ -1,6 +1,41 @@
 
+import NetworkCall from "@/lib/Network";
+import React, { useState } from "react";
+
+
+interface FormData {
+  password: string,
+  email: string,
+}
 export function Login() {
-  
+
+  const [ formData , setFormData] = useState<FormData>({
+     email: '',
+     password: ''
+  });
+  const [loading , setLoading] = useState(false);
+  const [error , setError] = useState<string | null>(null);
+  const [success , setSuccess] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name , value} = e.target;
+    setFormData({ ...formData , [name]:value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    e.preventDefault();
+    setLoading(false);
+    setError(null);
+    setSuccess(null);
+    NetworkCall("/hello" , {
+
+    } , (s)=>{
+         
+    });
+
+  };
+
 
   return (
      <>
@@ -36,15 +71,14 @@ export function Login() {
         </a>
 
         <h1 className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
-          Welcome to Squid 🦑
+          Welcome !
         </h1>
 
         <p className="mt-4 leading-relaxed text-gray-500">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam dolorum aliquam,
-          quibusdam aperiam voluptatum.
+          Be Productive. Be Smart !
         </p>
 
-        <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+        <form className="mt-8 grid grid-cols-6 gap-6" onSubmit={handleSubmit}>
        
         
 
@@ -79,8 +113,10 @@ export function Login() {
             <button
               className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
             >
-              Sign In
+              {loading ? "Logging in ..." : " Login"}
             </button>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {success && <p style={{ color: 'green' }}>{success}</p>}
 
             <p className="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?
